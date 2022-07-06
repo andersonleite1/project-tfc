@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as cors from 'cors';
 
 class App {
   public app: express.Express;
@@ -9,7 +10,7 @@ class App {
     this.config();
 
     // Não remover essa rota
-    this.app.get('/', (req, res) => res.json({ ok: true }));
+    this.app.get('/', (_req, res) => res.json({ ok: true }));
   }
 
   private config():void {
@@ -20,8 +21,10 @@ class App {
       next();
     };
 
-    this.app.use(express.json());
-    this.app.use(accessControl);
+    this.app
+      .use(cors())
+      .use(express.json())
+      .use(accessControl);
   }
 
   public start(PORT: string | number):void {
