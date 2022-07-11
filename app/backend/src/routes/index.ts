@@ -1,3 +1,7 @@
 import login from './login.routes';
+import team from './team.routes';
 
-export default { login };
+export default {
+  login,
+  team,
+};

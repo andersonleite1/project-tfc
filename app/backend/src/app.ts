@@ -28,6 +28,7 @@ class App {
       .use(express.json())
       .use(accessControl)
       .use('/login', routes.login)
+      .use('/teams', routes.team)
       .use(middleware.error);
   }
 
