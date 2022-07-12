@@ -29,6 +29,7 @@ class App {
       .use(accessControl)
       .use('/login', routes.login)
       .use('/teams', routes.team)
+      .use('/matches', routes.matches)
       .use(middleware.error);
   }
 
