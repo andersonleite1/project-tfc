@@ -30,6 +30,7 @@ class App {
       .use('/login', routes.login)
       .use('/teams', routes.team)
       .use('/matches', routes.matches)
+      .use('/leaderboard', routes.leaderboard)
       .use(middleware.error);
   }
 
