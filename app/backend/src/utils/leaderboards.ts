@@ -32,6 +32,13 @@ const addDataVictories = (homeTeamGoals: number, awayTeamGoals: number) => {
   teamData.goalsOwn += awayTeamGoals;
 };
 
+const addDataVictoriesAway = (homeTeamGoals: number, awayTeamGoals: number) => {
+  teamData.totalPoints += 3;
+  teamData.totalVictories += 1;
+  teamData.goalsFavor += awayTeamGoals;
+  teamData.goalsOwn += homeTeamGoals;
+};
+
 const addDataDraws = (homeTeamGoals: number, awayTeamGoals: number) => {
   teamData.totalPoints += 1;
   teamData.totalDraws += 1;
@@ -39,10 +46,23 @@ const addDataDraws = (homeTeamGoals: number, awayTeamGoals: number) => {
   teamData.goalsOwn += awayTeamGoals;
 };
 
+const addDataDrawsAway = (homeTeamGoals: number, awayTeamGoals: number) => {
+  teamData.totalPoints += 1;
+  teamData.totalDraws += 1;
+  teamData.goalsFavor += awayTeamGoals;
+  teamData.goalsOwn += homeTeamGoals;
+};
+
 const addDataLoses = (homeTeamGoals: number, awayTeamGoals: number) => {
   teamData.totalLosses += 1;
   teamData.goalsFavor += homeTeamGoals;
   teamData.goalsOwn += awayTeamGoals;
+};
+
+const addDataLosesAway = (homeTeamGoals: number, awayTeamGoals: number) => {
+  teamData.totalLosses += 1;
+  teamData.goalsFavor += awayTeamGoals;
+  teamData.goalsOwn += homeTeamGoals;
 };
 
 const calculateEfficiency = (totalPoints: number, totalGames: number) => {
@@ -58,6 +78,14 @@ const calculateTotalPointsHome = (matches: IMatch[]) => {
   });
 };
 
+const calculateTotalPointsAway = (matches: IMatch[]): void => {
+  matches.forEach(({ homeTeamGoals, awayTeamGoals }): void => {
+    if (homeTeamGoals < awayTeamGoals) addDataVictoriesAway(homeTeamGoals, awayTeamGoals);
+    if (homeTeamGoals === awayTeamGoals) addDataDrawsAway(homeTeamGoals, awayTeamGoals);
+    if (homeTeamGoals > awayTeamGoals) addDataLosesAway(homeTeamGoals, awayTeamGoals);
+  });
+};
+
 const calculateStatisticsTeamPlayedHome = (name: string, matches: IMatch[]) => {
   if (name !== teamData.name) resetTeamData();
   teamData.name = name;
@@ -70,4 +98,19 @@ const calculateStatisticsTeamPlayedHome = (name: string, matches: IMatch[]) => {
   return teamData;
 };
 
-export default calculateStatisticsTeamPlayedHome;
+const calculateStatisticsTeamPlayedAway = (name: string, matches: IMatch[]) => {
+  if (name !== teamData.name) resetTeamData();
+  teamData.name = name;
+  calculateTotalPointsAway(matches);
+  teamData.totalGames += 1;
+  teamData.goalsBalance = teamData.goalsFavor - teamData.goalsOwn;
+  const efficiency = calculateEfficiency(teamData.totalPoints, teamData.totalGames);
+  teamData.efficiency = Number(efficiency);
+
+  return teamData;
+};
+
+export {
+  calculateStatisticsTeamPlayedHome,
+  calculateStatisticsTeamPlayedAway,
+};
