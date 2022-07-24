@@ -7,6 +7,10 @@ router
   .get(
     '/home',
     LeaderboardController.home,
+  )
+  .get(
+    '/away',
+    LeaderboardController.away,
   );
 
 export default router;
