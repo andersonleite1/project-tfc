@@ -10,4 +10,13 @@ export default class LeaderboardController {
       next(err);
     }
   }
+
+  static async away(_req: Request, res: Response, next: NextFunction) {
+    try {
+      const statisticsTeamsPlayedAway = await LeaderboardService.getAway();
+      return res.status(200).json(statisticsTeamsPlayedAway);
+    } catch (err) {
+      next(err);
+    }
+  }
 }
