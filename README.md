@@ -22,6 +22,39 @@ O meu back-end implementou regras de negócio para popular adequadamente a tabel
 
 ## Como instalar esse projeto localmente na sua máquina
 
+Antes de tudo é preciso fazer o clone do projeto para sua máquina (é necessário ter o git instalado), escolha uma pasta no seu pc, entre nela e pelo terminal execute o seguinte comando: 
+
+```bash
+git clone https://github.com/andersonleite1/project-tfc
+```
 
 ## Como executar o projeto 
 
+#### Através do Docker
+
+_Obs: você precisa ter o Docker e Docker Compose instalados e configurados na sua máquina para esse passo funcionar corretamente_
+
+```bash
+cd project-tfc
+```
+Para subir o container
+
+```bash
+npm run compose:up
+```
+Para derrubar o container
+
+```bash
+npm run compose:down
+```
+Para visualizar os logs
+
+```bash
+npm run logs
+```
+#### Para visualizar
+
+Para visualizar o frontend consumindo os dados da API acesse [http://localhost:3000/](http://localhost:3000/)
+Para acessar a API [http://localhost:3001/](http://localhost:3001/)
+
+Você já está com o `TFC`  rodando na sua máquina local é só aproveitar :smile: 
