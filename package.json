@@ -6,7 +6,7 @@
   "scripts": {
     "compose:up": "(docker-compose up -d --build)",
     "compose:down": "(docker-compose down --remove-orphans)",
-    "logs": "cd app && docker-compose logs -f"
+    "logs": "docker-compose logs -f"
   },
   "author": "",
   "devDependencies": {
