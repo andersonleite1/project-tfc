@@ -13,8 +13,12 @@ Para adicionar uma partida foi necessário ter um token, portanto a pessoa dever
 O meu back-end implementou regras de negócio para popular adequadamente a tabela disponível no front-end que será exibida para a pessoa usuária do sistema.
 
 
-## Tecnologias utilizadas
+## Tecnologias utilizadas 
+#### Para desenvolvimento do backend
+`Node.js`, `Express`, `TypeScript`, `MySQL`, `Sequelize`, `bcryptjs`, `JWT (JSON Web Token)`
 
+#### Para teste de integração do backend
+`Mocha`, `Sinon.js`, `Chai`
 
 ## Como instalar esse projeto localmente na sua máquina
 
